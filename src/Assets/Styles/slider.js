@@ -26,7 +26,6 @@ export default StyleSheet.create({
     paddingHorizontal: itemHorizontalMargin,
     paddingBottom: 18, // needed for shadow,
     paddingTop: 10,
-
   },
   shadow: {
     position: 'absolute',

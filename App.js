@@ -3,7 +3,7 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Welcome from './src/Components/Welcome/com.welcome.js';
-import Articles from './src/Components/Article/com.articles'
+import Main from './src/Components/Main/com.main.js'
 const stack = createStackNavigator(
   {
     // welcome: {
@@ -13,7 +13,7 @@ const stack = createStackNavigator(
     //   })
     // },
     list: {
-      screen: Articles,
+      screen: Main,
       navigationOptions: () => ({
         header: null
       })

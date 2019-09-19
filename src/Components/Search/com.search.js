@@ -21,7 +21,6 @@ class Search extends Component {
         </View>
         <View style={styles.sideSection}></View>
       </View>
-
     )
   }
 }
