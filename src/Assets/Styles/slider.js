@@ -63,7 +63,8 @@ export default StyleSheet.create({
     resizeMode: 'cover',
     borderRadius: IS_IOS ? entryBorderRadius : 0,
     borderTopLeftRadius: entryBorderRadius,
-    borderTopRightRadius: entryBorderRadius
+    borderTopRightRadius: entryBorderRadius,
+    height: '100%'
   },
   // image's border radius is buggy on iOS; let's hack it!
   radiusMask: {

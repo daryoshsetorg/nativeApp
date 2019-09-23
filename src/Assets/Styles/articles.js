@@ -54,6 +54,4 @@ export default StyleSheet.create({
     flex: 1,
     margin: 2
   }
-
-
 })
