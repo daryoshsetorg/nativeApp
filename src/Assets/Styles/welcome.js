@@ -1,7 +1,7 @@
 
 import { StyleSheet } from 'react-native'
 
-export default StyleSheet.create({
+export default welcome = StyleSheet.create({
   main: {
     flex: 1,
     flexDirection: 'column',

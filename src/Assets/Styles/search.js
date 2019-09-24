@@ -17,8 +17,9 @@ export default StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
+    borderWidth: 1,
+    borderColor: "#ccc"
   },
   searchIcon: {
     padding: 10,

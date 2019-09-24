@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native'
 
 const entryBorderRadius = 8;
 
-export default StyleSheet.create({
+export default articles = StyleSheet.create({
   mainSection: {
     flex: 1,
     flexDirection: 'column',
@@ -18,8 +18,9 @@ export default StyleSheet.create({
     marginRight: 20,
     marginBottom: 10,
     borderColor: '#ccc',
-    borderTopWidth: 0,
-    borderWidth: 1
+    borderWidth: 1,
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
   },
   imageContainer: {
     flex: 4,

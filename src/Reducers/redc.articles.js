@@ -1,4 +1,4 @@
-import * as types from '../Actions/ac.link'
+import * as types from '../Actions/ac.articles'
 
 
 export default function Articles(state = {}, action) {
@@ -6,10 +6,8 @@ export default function Articles(state = {}, action) {
     case types.GET_ALL_ARTICLES:
       {
         return {
-          List: action.payload.Superlinks,
-          TotalPage: action.payload.Count
+          List: action.payload
         }
-
       }
     default: return state
 

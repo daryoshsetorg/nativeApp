@@ -1,5 +1,6 @@
 
 import { StyleSheet, Dimensions, Platform } from 'react-native';
+import styles from './styles';
 
 const IS_IOS = Platform.OS === 'ios';
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
@@ -52,8 +53,9 @@ export default StyleSheet.create({
     },
     shadowOpacity: 0.05,
     shadowRadius: 3.84,
-
     elevation: 2,
+    borderWidth: 1,
+    borderColor: "#ccc"
   },
   imageContainerEven: {
     backgroundColor: 'black'

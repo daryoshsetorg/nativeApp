@@ -1,6 +1,5 @@
 let Articles = {
-  List: [],
-  TotalPage: 0
+  List: []
 };
 
 const initialState = {

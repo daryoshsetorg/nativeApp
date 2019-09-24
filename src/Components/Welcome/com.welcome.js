@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Image, Animated } from 'react-native'
-import styles from '../../Assets/Styles/welcome.js'
+import welcome from '../../Assets/Styles/welcome.js'
 
 class Welcome extends Component {
   state = {
@@ -19,21 +19,21 @@ class Welcome extends Component {
 
   render() {
     return (
-      <View style={styles.main}>
-        <View style={styles.mainClass}>
-          <View style={styles.topRight}></View>
-          <View style={styles.topMiddle}></View>
-          <View style={styles.topLeft}></View>
+      <View style={welcome.main}>
+        <View style={welcome.mainClass}>
+          <View style={welcome.topRight}></View>
+          <View style={welcome.topMiddle}></View>
+          <View style={welcome.topLeft}></View>
         </View>
-        <View style={styles.logoArea}>
+        <View style={welcome.logoArea}>
           <Animated.View style={{ opacity: this.state.fadeAnim, zIndex: 10 }}>
-            <Image style={styles.logo} source={require('../../Assets/Images/logo.png')} />
+            <Image style={welcome.logo} source={require('../../Assets/Images/logo.png')} />
           </Animated.View>
         </View>
-        <View style={styles.mainClass}>
-          <View style={styles.bottomRight}></View>
-          <View style={styles.bottomMiddle}></View>
-          <View style={styles.bottomLeft}></View>
+        <View style={welcome.mainClass}>
+          <View style={welcome.bottomRight}></View>
+          <View style={welcome.bottomMiddle}></View>
+          <View style={welcome.bottomLeft}></View>
         </View>
       </View >
     )

@@ -1,68 +1,87 @@
 import React, { Component } from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
-import styles from '../../Assets/Styles/articles'
+import { View, Text, Image, TouchableOpacity, SafeAreaView, FlatList } from 'react-native'
+import articles from '../../Assets/Styles/articles'
+import { connect } from 'react-redux'
+import { getAllArticles } from '../../Actions/ac.articles'
+
+
 class Articles extends Component {
   state = {
-    ENTRIES1: [
-      {
-        id: 0,
-        title: 'سفر روحانی به تبریز',
-        subtitle: 'همزمان با سفر روحانی به تبریز جمعی از',
-        illustration: 'https://i.imgur.com/UYiroysl.jpg'
-      },
-      {
-        id: 1,
-        title: 'اجماع بزرگ روحانیون',
-        subtitle: 'Lorem ipsum dolor sit amet',
-        illustration: 'https://i.imgur.com/UPrs1EWl.jpg'
-      },
-      {
-        id: 2,
-        title: 'White Pocket Sunset',
-        subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
-        illustration: 'https://i.imgur.com/MABUbpDl.jpg'
-      },
-    ]
+    Loading: true,
   }
-  render() {
-    return (<View>
-      {
-        this.state.ENTRIES1.map((item, index) => (
-          <View key={item.id} style={styles.mainContainer}>
-            <View style={styles.itemContainer}>
-              <View style={styles.imageContainer}>
-                <Image resizeMode='cover' style={styles.image} source={{ uri: item.illustration }} />
-              </View>
-              <View style={styles.textContainer}>
-                <View style={styles.title}>
-                  <TouchableOpacity>
-                    <Text>{item.title}</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.subTitle}>
-                  <Text>{item.subtitle}</Text>
-                </View>
-              </View>
-              <View style={styles.oprationContainre}>
-                <View style={styles.oprationItems}>
-                  <Image style={{ height: 20, width: 20 }}
-                    source={require('../../Assets/Images/comment.png')} />
-                </View>
-                <View style={styles.oprationItems}>
-                  <Image style={{ height: 20, width: 20 }}
-                    source={require('../../Assets/Images/like.png')} />
-                </View>
-                <View style={styles.oprationItems}>
-                  <Image style={{ height: 20, width: 20 }}
-                    source={require('../../Assets/Images/share.png')} />
-                </View>
-              </View>
+  componentDidMount() {
+    console.log("in didmount")
+    this.props.GetArticles();
+  }
+  Items(params) {
+    return (
+      <View style={articles.mainContainer}>
+        <View style={articles.itemContainer}>
+          <View style={articles.imageContainer}>
+            <Image resizeMode='cover' style={articles.image} source={{ uri: params.ImageFiles }} />
+          </View>
+          <View style={articles.textContainer}>
+            <View style={articles.title}>
+              <TouchableOpacity>
+                <Text>{params.Title}</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={articles.subTitle}>
+              <Text>{params.Description}</Text>
             </View>
           </View>
-        ))
-      }
+          <View style={articles.oprationContainre}>
+            <View style={articles.oprationItems}>
+              <Image style={{ height: 20, width: 20 }}
+                source={require('../../Assets/Images/comment.png')} />
+            </View>
+            <View style={articles.oprationItems}>
+              <Image style={{ height: 20, width: 20 }}
+                source={require('../../Assets/Images/like.png')} />
+            </View>
+            <View style={articles.oprationItems}>
+              <Image style={{ height: 20, width: 20 }}
+                source={require('../../Assets/Images/share.png')} />
+            </View>
+          </View>
+        </View>
+      </View>
+    )
+  }
 
-    </View>)
+  beforRender() {
+    let render = <View>
+      <Image source={require('../../Assets/Images/like.png')} />
+    </View>
+    if (!this.state.Loading)
+      render = <SafeAreaView >
+        <FlatList
+          data={this.props.ArticlesData}
+          renderItem={({ item }) => this.Items(item)}
+          keyExtractor={item => item.ID}
+        />
+      </SafeAreaView>
+    return render;
+  }
+
+
+  render() {
+    return (
+      this.beforRender
+    )
   }
 }
-export default Articles;
+
+const mapDispatchToProps = function (dispatch) {
+  return {
+    GetArticles: () => dispatch(getAllArticles())
+  }
+}
+
+const mapStateToProps = function (state) {
+  return {
+    ArticlesData: state.Articles.List
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Articles);

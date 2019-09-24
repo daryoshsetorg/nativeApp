@@ -13,13 +13,15 @@ function _getAllArticles(payload) {
 }
 
 //functions
-// export function getAllArticles(param) {
-//   return (dispatch) => {
-//     return Axios.get(MainUrl+"GetSpecialMedia", param).then((res) => {
-//       dispatch(_getAllArticles(res))
-//     })
-//   }
-// }
+export function getAllArticles() {
+  console.log("in action")
+  return (dispatch) => {
+    return Axios.get(MainUrl + "GetSpecialMedia").then((res) => {
+      console.log(res);
+      dispatch(_getAllArticles(res.data))
+    })
+  }
+}
 
 // export function getLink(id) {
 //   return () => {
