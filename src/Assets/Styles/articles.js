@@ -54,5 +54,10 @@ export default articles = StyleSheet.create({
   oprationItems: {
     flex: 1,
     margin: 2
+  },
+  spineerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })

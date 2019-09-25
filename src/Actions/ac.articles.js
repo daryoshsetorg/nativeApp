@@ -1,9 +1,11 @@
 import Axios from 'axios'
-import MainUrl from '../Utilities/Url'
-//import { AppToaster } from '../Components/Wrappers/Toaster'
-//type
+import { MainUrl } from '../Utilities/Url.js'
+const querystring = require('querystring');
+
+
 export const GET_ALL_ARTICLES = "GET_ALL_ARTICLES";
 export const DELETE_LINK = "DELETE_LINK";
+
 
 //pure func
 function _getAllArticles(payload) {
@@ -13,11 +15,10 @@ function _getAllArticles(payload) {
 }
 
 //functions
-export function getAllArticles() {
-  console.log("in action")
+export function getAllArticles(param) {
   return (dispatch) => {
-    return Axios.get(MainUrl + "GetSpecialMedia").then((res) => {
-      console.log(res);
+    return Axios.post(MainUrl + "GetMediaByMediaType", querystring.stringify(param)).then((res) => {
+      console.log(res.data);
       dispatch(_getAllArticles(res.data))
     })
   }

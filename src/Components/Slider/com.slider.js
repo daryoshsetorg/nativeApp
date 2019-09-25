@@ -3,15 +3,18 @@ import { View, Text, Image } from 'react-native'
 import Carousel from 'react-native-snap-carousel';
 import { MainUrl, HyperImage } from '../../Utilities/Url.js'
 import styles, { sliderWidth, itemWidth } from '../../Assets/Styles/slider.js'
+import Spinner from 'react-native-loading-spinner-overlay';
 import Axios from 'axios'
+import slider from '../../Assets/Styles/slider.js';
+
 class Slider extends Component {
   state = {
-    Articles: []
+    Articles: [],
+    Loading: true,
   }
   componentDidMount() {
     Axios.get(MainUrl + "GetSpecialMedia").then((res) => {
-      console.log(res);
-      this.setState({ Articles: res.data })
+      this.setState({ Articles: res.data, Loading: false })
     });
   }
   _renderItem({ item, index }) {
@@ -20,7 +23,7 @@ class Slider extends Component {
       imageUrl = { uri: HyperImage + item.ID + "/Images/" + item.ImageFile }
     else
       imageUrl = require('../../Assets/Images/noImage.png');
-    console.log(imageUrl)
+
     return (
       <View style={[styles.slideInnerContainer]}>
         <View style={styles.imageContainer}>
@@ -34,19 +37,28 @@ class Slider extends Component {
     );
   }
 
+  beforRender() {
+    let render = <View style={slider.spinnerContainer} >
+      <Spinner
+        visible={true}
+        textContent={'درحال دریافت..'}
+        textStyle={{ color: '#fff' }}
+        visible={true}
+      />
+    </View>
+    if (!this.state.Loading)
+      render = <Carousel
+        data={this.state.Articles}
+        renderItem={this._renderItem}
+        sliderWidth={sliderWidth}
+        itemWidth={itemWidth}
+        layout={'default'} />
+    return render;
+  }
+
   render() {
     return (
-      <View >
-        <Carousel
-          data={this.state.Articles}
-          renderItem={this._renderItem}
-          sliderWidth={sliderWidth}
-          itemWidth={itemWidth}
-          layout={'default'}
-
-        />
-      </View>
-
+      this.beforRender()
     );
   }
 }

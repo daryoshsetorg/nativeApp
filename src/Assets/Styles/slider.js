@@ -38,7 +38,9 @@ export default StyleSheet.create({
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 10 },
     shadowRadius: 10,
-    borderRadius: entryBorderRadius
+    borderRadius: entryBorderRadius,
+    borderWidth: 1,
+    borderColor: "#ccc"
   },
   imageContainer: {
     flex: 1,
@@ -99,6 +101,8 @@ export default StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 2,
+    borderWidth: 1,
+    borderColor: "#ccc"
   },
   textContainerEven: {
     backgroundColor: 'black'
@@ -120,5 +124,11 @@ export default StyleSheet.create({
   },
   subtitleEven: {
     color: 'rgba(255, 255, 255, 0.7)'
+  },
+  spinnerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
   }
 });
