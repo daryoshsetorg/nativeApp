@@ -5,42 +5,41 @@ import { connect } from 'react-redux'
 import { getAllArticles } from '../../Actions/ac.articles'
 import Spinner from 'react-native-loading-spinner-overlay';
 import { HyperImage } from '../../Utilities/Url.js'
+import HeaderArticle from '../HeaderArticle/com.header.article.js'
 
 
 class Articles extends Component {
   state = {
+    data: [],
     Loading: true,
     Filter: {
       MediaTypes: "all",
       PageIndex: 1,
       PageSize: 5
-    }
+    },
+    loadingMore: false
   }
   componentDidMount() {
-    this.props.GetArticles(this.state.Filter);
+    this.fetchData();
+  }
+
+  fetchData = () => {
+    this.props.GetArticles(this.state.Filter).then(() => {
+      var a = this.state.data;
+      var b = this.props.ArticlesData;
+      this.state.data.push.apply(a, b);
+      console.log(this.state.data)
+      this.setState({ Loading: false, loadingMore: false });
+    });
   }
 
   _handleLoadMore = () => {
-    this.setState(
-      (prevState, nextProps) => ({
-        PageIndex: prevState.page + 1,
-      }),
-      () => {
-        this.props.GetArticles(this.state.Filter);
-      }
-    );
-  };
-
-  _handleRefresh = () => {
-    this.setState(
-      {
-        PageIndex: 1,
-        refreshing: true
-      },
-      () => {
-        this.props.GetArticles(this.state.Filter);
-      }
-    );
+    console.log("on handle more")
+    var index = this.state.Filter.PageIndex + 1;
+    this.setState(() => {
+      this.state.Filter.PageIndex = index;
+      this.state.loadingMore = true;
+    }, this.fetchData());
   };
 
   _renderFooter = () => {
@@ -50,13 +49,13 @@ class Articles extends Component {
       <View
         style={{
           position: 'relative',
-          width: width,
-          height: height,
+          width: '100%',
+          height: 100,
           paddingVertical: 20,
           borderTopWidth: 1,
           marginTop: 10,
           marginBottom: 10,
-          borderColor: colors.veryLightPink
+          borderColor: '#ccc'
         }}
       >
         <ActivityIndicator animating size="large" />
@@ -70,6 +69,8 @@ class Articles extends Component {
       imageUrl = { uri: HyperImage + params.ID + "/Images/" + params.ImageFile }
     else
       imageUrl = require('../../Assets/Images/noImage.png');
+
+    console.log(imageUrl);
     return (
       <View style={articles.mainContainer}>
         <View style={articles.itemContainer}>
@@ -87,17 +88,16 @@ class Articles extends Component {
             </View>
           </View>
           <View style={articles.oprationContainre}>
-            <View style={articles.oprationItems}>
+            <TouchableOpacity style={articles.oprationItems}>
               <Image style={{ height: 20, width: 20 }}
-                source={require('../../Assets/Images/comment.png')} />
-            </View>
-            <View style={articles.oprationItems}>
+                source={require('../../Assets/Images/chat.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity style={articles.oprationItems}>
               <Image style={{ height: 20, width: 20 }}
                 source={require('../../Assets/Images/like.png')} />
-            </View>
-            <View style={articles.oprationItems}>
-              <Image style={{ height: 20, width: 20 }}
-                source={require('../../Assets/Images/share.png')} />
+            </TouchableOpacity>
+            <View style={articles.dateItems}>
+              <Text>تاریخ : {params.Date}</Text>
             </View>
           </View>
         </View>
@@ -106,10 +106,9 @@ class Articles extends Component {
   }
 
   beforRender() {
-    console.log("before render")
     let render = <View style={articles.spineerContainer}>
       <Spinner
-        visible={this.state.spinner}
+        visible={true}
         textContent={'درحال دریافت..'}
         textStyle={{ color: '#fff' }}
       />
@@ -117,14 +116,13 @@ class Articles extends Component {
     if (!this.state.Loading)
       render = <SafeAreaView >
         <FlatList
-          data={this.props.ArticlesData}
+          data={this.state.data}
           renderItem={({ item }) => this.Items(item)}
           keyExtractor={item => item.ID}
-          onEndReached={this._handleLoadMore}
           onEndReachedThreshold={0.5}
+          onEndReached={this._handleLoadMore}
           ListFooterComponent={this._renderFooter}
-          onRefresh={this._handleRefresh}
-          refreshing={this.state.refreshing}
+          ListHeaderComponent={HeaderArticle}
         />
       </SafeAreaView>
     return render;

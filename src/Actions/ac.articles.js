@@ -18,7 +18,6 @@ function _getAllArticles(payload) {
 export function getAllArticles(param) {
   return (dispatch) => {
     return Axios.post(MainUrl + "GetMediaByMediaType", querystring.stringify(param)).then((res) => {
-      console.log(res.data);
       dispatch(_getAllArticles(res.data))
     })
   }

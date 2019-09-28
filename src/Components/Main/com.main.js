@@ -1,28 +1,23 @@
 import React, { Component } from 'react'
-import { View, ScrollView, Text } from 'react-native'
+import { View, Image } from 'react-native'
 import styles from '../../Assets/Styles/main.js'
 
-import Slider from '../Slider/com.slider'
-import Search from '../Search/com.search'
-import Category from '../Category/com.category'
 import Articles from '../Article/com.articles'
-import Header from '../Header/com.header'
+import Header from '../Header/com.header.js'
 
 class Main extends Component {
+  // toggleDrawer = () => {
+  //   console.log(this.props.navigationProps);
+  //   this.props.navigationProps.toggleDrawer();
+  // }
+  static navigationOptions = ({ navigation }) => ({
+    header: <Header navigation={navigation} />,
+  });
   render() {
     return (
-
-      <View style={styles.mainSection}>
-
-        <ScrollView >
-          <Header />
-          <Slider />
-          <Search />
-          <Category />
-          <Articles />
-        </ScrollView>
+      <View styles={styles.mainSection}>
+        <Articles />
       </View>
-
     )
   }
 }

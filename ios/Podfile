@@ -31,6 +31,8 @@ target 'NativeHypermedia' do
 
   pod 'RNSearchBar', :path => '../node_modules/react-native-search-bar'
 
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
   target 'NativeHypermediaTests' do
     inherit! :search_paths
     # Pods for testing

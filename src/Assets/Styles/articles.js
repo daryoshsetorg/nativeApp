@@ -13,7 +13,7 @@ export default articles = StyleSheet.create({
     justifyContent: 'center',
   },
   itemContainer: {
-    flex: 1,
+    height: 300,
     marginLeft: 20,
     marginRight: 20,
     marginBottom: 10,
@@ -21,39 +21,52 @@ export default articles = StyleSheet.create({
     borderWidth: 1,
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    borderBottomLeftRadius: 5,
   },
   imageContainer: {
-    flex: 4,
-
+    height: 180,
   },
   image: {
     flex: 1,
     width: '100%',
-    height: 150,
+    height: '100%',
     borderTopRightRadius: 5,
     borderTopLeftRadius: 5,
-    marginTop: 2
   },
   textContainer: {
     flex: 3,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    height: 100,
+    padding: 5
   },
   title: {
     flex: 1,
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+
   },
   subTitle: {
     flex: 1,
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    flexWrap: 'nowrap'
   },
   oprationContainre: {
-    flex: 2,
-    flexDirection: 'row'
+    flex: 1,
+    flexDirection: 'row',
+    height: 50,
+    padding: 5,
+    borderTopColor: '#dddd',
+    borderTopWidth: 1
   },
   oprationItems: {
+    margin: 2,
+    width: 40,
+    alignItems: 'center',
+  },
+  dateItems: {
     flex: 1,
-    margin: 2
+    flexWrap: 'nowrap'
   },
   spineerContainer: {
     flex: 1,

@@ -11,7 +11,8 @@ export default StyleSheet.create({
     borderRadius: 7,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 5
+    margin: 5,
+    fontSize: 5
   }
 
 })

@@ -43,7 +43,6 @@ class Slider extends Component {
         visible={true}
         textContent={'درحال دریافت..'}
         textStyle={{ color: '#fff' }}
-        visible={true}
       />
     </View>
     if (!this.state.Loading)
