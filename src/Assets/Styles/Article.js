@@ -1,8 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
-const entryBorderRadius = 8;
-
-export default articles = StyleSheet.create({
+export default article = StyleSheet.create({
   mainSection: {
     flex: 1,
     flexDirection: 'column',
@@ -44,20 +42,12 @@ export default articles = StyleSheet.create({
     flex: 1,
     fontSize: 20,
     fontWeight: 'bold',
-    flexWrap: 'wrap',
-    overflow: 'hidden',
-    direction: 'rtl',
-    textAlign: 'right',
-    alignItems: 'flex-start'
 
   },
   subTitle: {
     flex: 1,
     fontStyle: 'italic',
-    flexWrap: 'nowrap',
-    overflow: 'hidden',
-    direction: 'rtl',
-    textAlign: 'right'
+    flexWrap: 'nowrap'
   },
   oprationContainre: {
     flex: 1,

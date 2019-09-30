@@ -17,10 +17,26 @@ class Articles extends Component {
       PageIndex: 1,
       PageSize: 5
     },
-    loadingMore: false
+    loadingMore: false,
+    Article: {
+      ID: 0,
+      Title: '',
+      SubTitle: ''
+    }
   }
   componentDidMount() {
     this.fetchData();
+  }
+
+  sendData = (id) => {
+    let filterArticle = this.state.data.filter((article) => {
+      return article.ID === id
+    })
+    this.setState(() => {
+      this.state.Article = filterArticle[0]
+    }, () => {
+      this.props.test.navigate("article", this.state.Article);
+    })
   }
 
   fetchData = () => {
@@ -28,7 +44,6 @@ class Articles extends Component {
       var a = this.state.data;
       var b = this.props.ArticlesData;
       this.state.data.push.apply(a, b);
-      console.log(this.state.data)
       this.setState({ Loading: false, loadingMore: false });
     });
   }
@@ -74,13 +89,15 @@ class Articles extends Component {
     return (
       <View style={articles.mainContainer}>
         <View style={articles.itemContainer}>
-          <View style={articles.imageContainer}>
+          <TouchableOpacity onPress={() => {
+            this.sendData(params.ID)
+          }} style={articles.imageContainer}>
             <Image resizeMode='cover' style={articles.image} source={imageUrl} />
-          </View>
+          </TouchableOpacity>
           <View style={articles.textContainer}>
             <View style={articles.title}>
               <TouchableOpacity>
-                <Text>{params.Title}</Text>
+                <Text >{params.Title}</Text>
               </TouchableOpacity>
             </View>
             <View style={articles.subTitle}>

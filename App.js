@@ -23,6 +23,7 @@ const store = createStore(reducer, initialState, composeEnhancers(applyMiddlewar
 import Welcome from './src/Components/Welcome/com.welcome.js';
 import Main from './src/Components/Main/com.main.js'
 import Sidebar from './src/Components/sidebarMenu/com.sidebar.js'
+import Article from './src/Components/Article/com.article.js'
 
 const st_welcom = createStackNavigator({
   welcome: {
@@ -34,6 +35,13 @@ const stack = createStackNavigator(
   {
     list: {
       screen: Main
+    },
+  });
+
+const st_article = createStackNavigator(
+  {
+    article: {
+      screen: Article
     },
   });
 
@@ -49,6 +57,9 @@ const drawer = createDrawerNavigator({
     navigationOptions: {
       drawerLabel: 'خوش آمدید'
     }
+  },
+  SingleArticle: {
+    screen: st_article,
   }
 },
   {
@@ -56,7 +67,8 @@ const drawer = createDrawerNavigator({
     drawerWidth: 200,
     drawerPosition: 'right',
     drawerType: 'front',
-    hideStatusBar: true
+    hideStatusBar: true,
+    contentComponent: Sidebar
   }
 );
 

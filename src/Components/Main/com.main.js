@@ -16,7 +16,7 @@ class Main extends Component {
   render() {
     return (
       <View styles={styles.mainSection}>
-        <Articles />
+        <Articles test={this.props.navigation} />
       </View>
     )
   }

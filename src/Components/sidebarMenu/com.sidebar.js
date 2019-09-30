@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Image, Button } from 'react-native'
+import { Image, Button, View, TouchableOpacity, Text } from 'react-native'
 import { } from 'react-navigation'
+import { FlatList } from 'react-native-gesture-handler';
 
 class Sidebar extends Component {
   static navigationOptions = {
@@ -15,10 +16,18 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <Button
-        onPress={() => this.props.navigation.goBack()}
-        title="Go back home"
-      />
+      <View>
+        <Button
+          onPress={() => this.props.navigation.goBack()}
+          title="بازگشت"
+        />
+        <View>
+          <TouchableOpacity>
+            <Text>لیست</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
     );
   }
 }
