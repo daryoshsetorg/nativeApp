@@ -1,53 +1,53 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
 export default article = StyleSheet.create({
-  mainSection: {
-    flex: 1,
-    flexDirection: 'column',
-    marginTop: -10
-  },
-  mainContainer: {
-    flex: 1,
-    justifyContent: 'center',
+  backButton: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
+    zIndex:10,
+    width:30,
+    height:30,
+    backgroundColor:'#000',
+    alignItems:'center',
+    justifyContent:'center'
   },
   itemContainer: {
-    height: 300,
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 10,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderTopRightRadius: 5,
-    borderTopLeftRadius: 5,
-    borderBottomRightRadius: 5,
-    borderBottomLeftRadius: 5,
+    flex: 1,
   },
   imageContainer: {
-    height: 180,
+    height: 300,
   },
   image: {
     flex: 1,
     width: '100%',
     height: '100%',
-    borderTopRightRadius: 5,
-    borderTopLeftRadius: 5,
   },
   textContainer: {
-    flex: 3,
+    minHeight: 300,
     flexDirection: 'column',
-    height: 100,
-    padding: 5
+    padding: 10,
   },
   title: {
-    flex: 1,
+    minHeight:50,
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight:'300',
+    flexWrap: 'nowrap',
+    direction: 'rtl',
+    textAlign: 'right',
+    margin:5,
 
   },
   subTitle: {
-    flex: 1,
+    minHeight:200,
     fontStyle: 'italic',
-    flexWrap: 'nowrap'
+    flexWrap: 'nowrap',
+    direction: 'rtl',
+    textAlign: 'right',
+    margin:5,
+    lineHeight:20,
+    justifyContent:'flex-end',
+    alignItems:'flex-end'
   },
   oprationContainre: {
     flex: 1,

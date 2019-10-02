@@ -1,28 +1,40 @@
 import React, { Component } from 'react'
-import { View, Text, Button, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Button, Image, TouchableOpacity, ScrollView } from 'react-native'
 import Header from '../Header/com.header'
-import article from '../../Assets/Styles/Article'
+import article from '../../Assets/Styles/article'
 import { HyperImage } from '../../Utilities/Url'
+import Icon from 'react-native-ionicons'
 
-export default class Article extends Component {
+class Article extends Component {
   static navigationOptions = ({ navigation }) => ({
-    headerTintColor: 'blue',
-    headerLeft: <Button title="بازگشت" onPress={() => {
-      this.props.navigation.navigate("list")
-    }} />
+    // headerTintColor: 'blue',
+    // headerLeft: <Button title="بازگشت" onPress={() => {
+    //   this.props.navigation.navigate("list")
+    // }} />
+    header: null
   });
+
+  backToList() {
+    this.props.navigation.navigate("list");
+  }
+
   render() {
     let x = this.props.navigation.state.params;
-    console.log(x);
     let imageUrl;
     if (x.ImageFile != null)
       imageUrl = { uri: HyperImage + x.ID + "/Images/" + x.ImageFile }
     else
       imageUrl = require('../../Assets/Images/noImage.png');
     return (
-      <View style={article.mainContainer}>
+      <ScrollView >
         <View style={article.itemContainer}>
-          <Image resizeMode='cover' style={article.image} source={imageUrl} />
+          <TouchableOpacity onPress={this.backToList.bind(this)} style={article.backButton}>
+            <Icon android="ios-arrow-back" size={20}
+              color="#fff" />
+          </TouchableOpacity>
+          <View style={article.imageContainer}>
+            <Image resizeMode='cover' style={article.image} source={imageUrl} />
+          </View>
           <View style={article.textContainer}>
             <View style={article.title}>
               <Text>{x.Title}</Text>
@@ -43,7 +55,8 @@ export default class Article extends Component {
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
+export default Article;

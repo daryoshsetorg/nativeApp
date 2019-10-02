@@ -6,6 +6,7 @@ import { getAllArticles } from '../../Actions/ac.articles'
 import Spinner from 'react-native-loading-spinner-overlay';
 import { HyperImage } from '../../Utilities/Url.js'
 import HeaderArticle from '../HeaderArticle/com.header.article.js'
+import { NavigationActions } from 'react-navigation'
 
 
 class Articles extends Component {
@@ -35,7 +36,7 @@ class Articles extends Component {
     this.setState(() => {
       this.state.Article = filterArticle[0]
     }, () => {
-      this.props.test.navigate("article", this.state.Article);
+      this.props.ArticleParam.navigate("article", this.state.Article);
     })
   }
 

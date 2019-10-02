@@ -6,17 +6,14 @@ import Articles from '../Article/com.articles'
 import Header from '../Header/com.header.js'
 
 class Main extends Component {
-  // toggleDrawer = () => {
-  //   console.log(this.props.navigationProps);
-  //   this.props.navigationProps.toggleDrawer();
-  // }
   static navigationOptions = ({ navigation }) => ({
     header: <Header navigation={navigation} />,
   });
   render() {
     return (
       <View styles={styles.mainSection}>
-        <Articles test={this.props.navigation} />
+        <Articles
+          ArticleParam={this.props.navigation} />
       </View>
     )
   }

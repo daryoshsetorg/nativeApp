@@ -10,7 +10,7 @@ export default class HeaderArticle extends Component {
       <View>
         <Slider />
         <Search />
-        <Category />
+        <Category articleParam={this.props.navigation} />
       </View>
     )
   }
